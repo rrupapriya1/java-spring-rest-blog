@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pluralsight.blog.model.Author;
 
-@Repository
+
 @RepositoryRestResource(exported = false)
 public interface AuthorRepository extends JpaRepository<Author, Long>{
 
