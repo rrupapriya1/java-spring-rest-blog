@@ -8,6 +8,7 @@ import org.springframework.validation.*;
 
 @Configuration
 public class RestConfig {
-	
+	public static void main(String[] args){
+	}
 
 }
