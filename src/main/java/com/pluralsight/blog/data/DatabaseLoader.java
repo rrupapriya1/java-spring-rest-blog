@@ -20,12 +20,18 @@ public class DatabaseLoader implements ApplicationRunner {
             "Earbuds", "Speakers", "Tripod", "Instant Pot", "Coffee Cup", "Keyboard", "Sunglasses"};
     public List<Post> randomPosts = new ArrayList<>();
     public List<Author> authors = new ArrayList<>();
+    
+    @Autowired
+    private final PostRepository postRepository; 
 
-    public DatabaseLoader() {
+    public DatabaseLoader(PostRepository postRepository) {
+    	this.postRepository = postRepository;
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+    	
+    	System.out.println("Starting the Custom application runner");
         IntStream.range(0,40).forEach(i->{
             String template = templates[i % templates.length];
             String gadget = gadgets[i % gadgets.length];
@@ -34,5 +40,7 @@ public class DatabaseLoader implements ApplicationRunner {
             Post post = new Post(title, "Lorem ipsum dolor sit amet, consectetur adipiscing elit… ");
             randomPosts.add(post);
         });
+        
+        postRepository.saveAll(randomPosts);
     }
 }
